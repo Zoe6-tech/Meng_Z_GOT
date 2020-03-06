@@ -7,10 +7,25 @@
 
   //fucntions go in the middle -> what do we want our app to do?
   function showLightBox(){
-    //show the lightbox on a click
     //debugger;
+    //retrieve the CSS class that matches the video name in the video folder
+    let houseName= this.className.split(" ")[1];
+
+    //capitalize the first letter of the house name with JavaScript
+    // and then add the rest of the house name to it
+    // first letter=>capital
+    let newSource=houseName.charAt(0).toUpperCase()+houseName.slice(1);
+
+    let targetSource= `video/House-${newSource}.mp4`;
+    debugger;
+
+
+    //show the lightbox on a click
+
     lightBox.classList.add("show-lightbox");
     //play the lightbox video when it open
+    houseVideo.src=targetSource;
+    houseVideo.load();
     houseVideo.play();
   }
 
