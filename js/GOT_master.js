@@ -5,7 +5,8 @@
       houseVideo=lightBox.querySelector("video"),
       closeButton=lightBox.querySelector('.close-button'),
       currenthouseName=document.querySelector("h1"),
-      houseDescription=document.querySelector(".house-info");
+      houseDescription=document.querySelector(".house-info"),
+      imageContainer=document.querySelector('#houseImages');
 
       const houseData=[
         ["Stark",`House Stark of Winterfell is a Great House of Westeros,
@@ -110,8 +111,27 @@
     houseVideo.currentTime=0;
   }
 
+  function animateBanners(){
+
+  //clicking on the shield should trigger an animation
+  // figure out how far the banners should move with simple math
+
+    let offsetWidth=600;
+    let multiplier= this.dataset.offset;
+    let newPosition=offsetWidth*multiplier;
+
+    //debugger;
+
+    //change the style.right property to match the new position-where it needs to move to
+    //right
+    imageContainer.style.right=`${newPosition}px`;
+  }
+
  //event hadling for our sigilButtons
- sigilButtons.forEach(button=>button.addEventListener("click",showLightBox));
+ //sigilButtons.forEach(button=>button.addEventListener("click",showLightBox));
+
+ //animate the banners on a click
+ sigilButtons.forEach(button=>button.addEventListener("click",animateBanners));
 
 //add some event handling fot the lightbox close closeButton
 closeButton.addEventListener("click",hideLightBox)
