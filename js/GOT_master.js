@@ -6,9 +6,12 @@
       closeButton=lightBox.querySelector('.close-button'),
       currenthouseName=document.querySelector("h1"),
       houseDescription=document.querySelector(".house-info"),
-      imageContainer=document.querySelector('#houseImages');
+      imageContainer=document.querySelector('#houseImages'),
+      playButton = document.querySelector('.play-button'),
+      rewindButton = document.querySelector('.rewind-button');
 
-      const houseData=[
+      const houseData=[ 
+
         ["Stark",`House Stark of Winterfell is a Great House of Westeros,
         ruling over the vast region known as the North from their seat in Winterfell.
         It is one of the oldest lines of Westerosi nobility by far, claiming a line
@@ -34,6 +37,13 @@
           the West. As the new royal house, they also rule directly over the Crownlands from their
           seat of the Red Keep in King's Landing, the traditional seat of the royal family.`],
 
+          ["TULLY",`House Tully of Riverrun is an exiled Great House of Westeros. Its most senior
+        member carried the title of Lord of Riverrun and Lord Paramount of the Trident, until the
+        Red Wedding. The current head is Lord Edmure Tully, son of the late Hoster Tully. The
+        Tully sigil is a silver trout on a red and blue background. Their house words are
+         "Family, Duty, Honor."`],
+
+
         ["GREYJOY",`House Greyjoy of Pyke is one of the Great Houses of Westeros. It rules over
         the Iron Islands, a harsh and bleak collection of islands off the west coast of Westeros,
          from the castle at Pyke. The head of the house is the Lord Reaper of Pyke.
@@ -42,20 +52,15 @@
         associated with House Greyjoy and their bannermen, as they are associated with the faith
         of the Drowned God. `],
 
-        ["TULLY",`House Tully of Riverrun is an exiled Great House of Westeros. Its most senior
-        member carried the title of Lord of Riverrun and Lord Paramount of the Trident, until the
-        Red Wedding. The current head is Lord Edmure Tully, son of the late Hoster Tully. The
-        Tully sigil is a silver trout on a red and blue background. Their house words are
-         "Family, Duty, Honor."`],
-
+      
         ["ARRYN",`House Arryn of the Eyrie is one of the Great Houses of Westeros. It has ruled
          over the Vale of Arryn for millennia, originally as the Kings of Mountain and Vale and
          more recently as Lords Paramount of the Vale and Wardens of the East under the Targaryen
          kings and Baratheon-Lannister kings. The nominal head of House Arryn is Robin Arryn,
          the Lord of the Eyrie, with his stepfather Petyr Baelish acting as Lord Protector until
          he reaches the age of majority. `],
-
-         ["TARGERYEN",`House Targaryen of Dragonstone is a Great House of Westeros and was the
+         
+           ["TARGERYEN",`House Targaryen of Dragonstone is a Great House of Westeros and was the
          ruling royal House of the Seven Kingdoms for three centuries since it conquered and
          unified the realm, before it was deposed during Robert's Rebellion and House Baratheon
          replaced it as the new royal House. The few surviving Targaryens fled into exile to the
@@ -70,7 +75,15 @@
            House Tully had supported the independence movement for the Kingdom of the North. The
            current head of the house is unknown following the assassinations of Lord Walder Frey
            and two of his sons, Lothar Frey and Walder Rivers, by the vengeful Arya Stark. This is
-            made more complex by the subsequent assassination of all the male Freys soon after.`]
+            made more complex by the subsequent assassination of all the male Freys soon after.`],
+
+           ["TYRELL",`House Tyrell of Highgarden is one of the Great Houses of the Seven Kingdoms, 
+            being Lords Paramount of the Mander and the liege lords of the Reach. A large, wealthy 
+            house, its wealth is only surpassed among the Great Houses by House Lannister, and the
+             Tyrells can field the greatest armies. Additionally, if they call the ships of the 
+             Redwyne fleet, the lords of the Shield Islands, and the coastal lords, they can command 
+             a navy that equals if not surpasses the royal fleet of King's Landing. `]
+      
       ];
 
   //fucntions go in the middle -> what do we want our app to do?
@@ -88,13 +101,8 @@
     currenthouseName.textContent=`House ${houseData[this.dataset.offset][0]}`;
     //this ceriable is pointing at the paragraphy tag under the h1->this is the house description
     houseDescription.textContent=`${houseData[this.dataset.offset][1]}`;
-
-
     //debugger;
-
-
     //show the lightbox on a click
-
     lightBox.classList.add("show-lightbox");
 
       let targetSource= `video/House-${newSource}.mp4`;
@@ -119,20 +127,38 @@
     let offsetWidth=600;
     let multiplier= this.dataset.offset;
     let newPosition=offsetWidth*multiplier;
-
     //debugger;
-
     //change the style.right property to match the new position-where it needs to move to
     //right
     imageContainer.style.right=`${newPosition}px`;
+
+     currenthouseName.textContent = `House ${houseData[multiplier][0]}`;
+    houseDescription.textContent = houseData[multiplier][1];
+  }
+
+
+   function PlayandPause() {
+    if(houseVideo.paused) 
+      houseVideo.play();
+    else
+      houseVideo.pause();
+  }
+
+     function rewindVideo() {
+    houseVideo.currentTime=0;
   }
 
  //event hadling for our sigilButtons
- //sigilButtons.forEach(button=>button.addEventListener("click",showLightBox));
+ sigilButtons.forEach(button=>button.addEventListener("click",showLightBox));
 
  //animate the banners on a click
  sigilButtons.forEach(button=>button.addEventListener("click",animateBanners));
 
 //add some event handling fot the lightbox close closeButton
-closeButton.addEventListener("click",hideLightBox)
+houseVideo.addEventListener('ended',hideLightBox);
+closeButton.addEventListener("click",hideLightBox);
+
+playButton.addEventListener('click',PlayandPause);
+rewindButton.addEventListener('click',rewindVideo);
 })();
+
