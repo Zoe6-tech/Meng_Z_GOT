@@ -36,10 +36,16 @@ main {
 	overflow:hidden;
 }
 
-#houseImages { position:relative; width:4000px; transition: all 1.3s; }
-#houseImages img { float:left; }
+#houseImages { 
+	position:relative;
+	 width:6000px; 
+	 transition: all 1.3s; }
 
-#bottomNav { margin-top:30px; }
+#houseImages img { 
+	float:left; }
+
+#bottomNav { 
+	margin-top:30px; }
 
 #navList li {
 	display:inline;
@@ -80,6 +86,16 @@ main {
 
 .arryn { background-position:-253px -54px; }
 .arryn:hover { background-position:-253px 0px; }
+
+.targaryen { background-position:-306px -54px; }
+.targaryen:hover { background-position:-306px 0px; }
+
+.frey { background-position:-357px -54px; }
+.frey:hover { background-position:-357px 0px; }
+
+.tyrell { background-position:-408px -54px; }
+.tyrell:hover { background-position:-408px 0px; }
+
 /* ----- end image sprite ----- */
 
 /* ----- classes for transitions ----- */
@@ -110,6 +126,7 @@ main {
 
 .show-lightbox{
   display: block;
+    font-family: 'GOT_font';
 }
 .close-button{
 	color: white;
@@ -121,6 +138,19 @@ main {
 	cursor: pointer;
 }
 
+
+button{
+	position: relative;
+    padding: 10px;
+     font-family: 'GOT_font';
+     margin-left: 60px;
+     margin-top: 10px;
+}
+
+button:hover{
+   color: white;
+   background-color: #000000;
+}
 
 video {
 	width: 60%;
